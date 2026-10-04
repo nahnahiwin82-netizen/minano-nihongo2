@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minna no Nihongo II - Online Learning Portal</title>
+    <style>
+        :root {
+            --waseda-maroon: #891b2e;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f8f6;
+            color: #222;
+        }
+
+        header {
+            background-color: var(--waseda-maroon);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 750px;
+            margin: 35px auto;
+            padding: 25px;
+            background: white;
+            border: 1px solid #e3ded8;
+            border-radius: 6px;
+        }
+
+        h2 {
+            color: var(--waseda-maroon);
+            font-size: 20px;
+            margin-top: 0;
+            border-bottom: 2px solid #f0ebe4;
+            padding-bottom: 10px;
+        }
+
+        .instruction {
+            font-size: 14px;
+            color: #555;
+            background: #fdf8e2;
+            padding: 12px;
+            border-left: 4px solid #f0ad4e;
+            margin-bottom: 25px;
+            border-radius: 4px;
+        }
+
+        .question-block {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .question-title {
+            font-weight: 600;
+            font-size: 15px;
+            margin-bottom: 8px;
+        }
+
+        label {
+            display: block;
+            padding: 8px;
+            margin: 4px 0;
+            background: #f5f5f5;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        label:hover {
+            background: #ededed;
+        }
+
+        input[type="radio"] {
+            margin-right: 10px;
+        }
+
+        .submit-btn {
+            background: var(--waseda-maroon);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 15px;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 15px;
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            background: #6f1525;
+        }
+
+        #result {
+            margin-top: 16px;
+            font-weight: 600;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 15px;
+            font-size: 11px;
+            color: #999;
+            border-top: 1px solid #eee;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                margin: 20px 12px;
+                padding: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>みんなの日本語 II - オンライン学習ポータル</header>
+
+    <main class="container">
+        <h2>だい04か：ぶんぽうとごいのオンラインれんしゅうもんだい</h2>
+
+        <div class="instruction">
+            <strong>しじ：</strong>
+            つぎのぶんをよんで、くうらんにもっともてきせつなことばをえらんでください。
+        </div>
+
+        <form id="quiz-form">
+            <section class="question-block" aria-labelledby="question-1">
+                <div class="question-title" id="question-1">
+                    1. まいあさ わたしは 6じはん________ おきます。
+                </div>
+                <label><input type="radio" name="q1" value="に" required> A. に</label>
+                <label><input type="radio" name="q1" value="を"> B. を</label>
+                <label><input type="radio" name="q1" value="へ"> C. へ</label>
+                <label><input type="radio" name="q1" value="で"> D. で</label>
+            </section>
+
+            <section class="question-block" aria-labelledby="question-2">
+                <div class="question-title" id="question-2">
+                    2. きのう わたしは 10じから 5じ________ はたらきました。
+                </div>
+                <label><input type="radio" name="q2" value="から" required> A. から</label>
+                <label><input type="radio" name="q2" value="まで"> B. まで</label>
+                <label><input type="radio" name="q2" value="ごろ"> C. ごろ</label>
+                <label><input type="radio" name="q2" value="など"> D. など</label>
+            </section>
+
+            <button class="submit-btn" type="submit">かいとうをそうしんする</button>
+            <p id="result" role="status" aria-live="polite"></p>
+        </form>
+    </main>
+
+    <footer>&copy; 2026 Minna no Nihongo Education Department. Academic Use Only.</footer>
+
+    <script>
+        document.getElementById('quiz-form').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            const answers = new FormData(event.currentTarget);
+            const score = Number(answers.get('q1') === 'に') + Number(answers.get('q2') === 'まで');
+            const result = document.getElementById('result');
+            result.textContent = `せいかいは ${score} / 2 もんです。`;
+        });
+    </script>
+</body>
+</html>
